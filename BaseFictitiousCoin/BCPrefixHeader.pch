@@ -9,8 +9,32 @@
 #ifndef BCPrefixHeader_pch
 #define BCPrefixHeader_pch
 
-// Include any system framework and library headers here that should be included in all compilation units.
-// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+// Import
+#import <SDAutoLayout.h>
+#import <GCDObjC.h>
 
+#import "UIImage+BCCategory.h"
+#import "UIColor+BCCategory.h"
+#import "NSObject+BCCategory.h"
+#import "NSString+BCCategory.h"
+
+#import "BCHUD.h"
+
+
+
+// Size
+#define BCSCREEN_WIDTH   [[UIScreen mainScreen] bounds].size.width
+#define BCSCREEN_HEIGHT  [[UIScreen mainScreen] bounds].size.height
+
+// 由于设计是以机型IPHONE6为基准，所以比例布局参数以IPHONE6的屏幕尺寸为准
+#define BCPROPORTIONW(num) (BCSCREEN_HEIGHT>BCSCREEN_WIDTH?(CGFloat)(BCSCREEN_HEIGHT*num/667):(CGFloat)(BCSCREEN_WIDTH*num/667))
+
+#ifdef DEBUG
+#define BCLog(...) NSLog(@"<%s>: %@\n", __func__, [NSString stringWithFormat:__VA_ARGS__])
+#else
+#define BCLog(...)
+#endif
+
+#define BCWeakObj(o) __weak typeof(o) obj##Weak = o;
 
 #endif /* BCPrefixHeader_pch */

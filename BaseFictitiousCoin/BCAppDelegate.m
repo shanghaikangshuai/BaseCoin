@@ -7,8 +7,9 @@
 //
 
 #import "BCAppDelegate.h"
+#import "BCTabBarControllerConfig.h"
 
-@interface BCAppDelegate ()
+@interface BCAppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -16,7 +17,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]init];
+    self.window.frame = [UIScreen mainScreen].bounds;
+    BCTabBarControllerConfig *tabBarControllerConfig = [[BCTabBarControllerConfig alloc] init];
+    CYLTabBarController *tabBarController = tabBarControllerConfig.tabBarController;
+    [self.window setRootViewController:tabBarController];
+    
+    tabBarController.delegate = self;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
